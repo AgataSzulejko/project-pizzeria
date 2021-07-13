@@ -161,14 +161,16 @@
         }
       }
 
+
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
 
-    };
+    }
 
     initOrderForm(){
       const thisProduct = this;
       console.log('initOrderForm');
+
       thisProduct.form.addEventListener('submit', function (event) {
         event.preventDefault();
         thisProduct.processOrder();
@@ -184,7 +186,7 @@
         event.preventDefault();
         thisProduct.processOrder();
       });
-    };
+    }
 
   }
 

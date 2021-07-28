@@ -39,6 +39,7 @@
         },
     };
 
+//eslint-disable-next-line no-unused-vars
     const settings = {
         amountWidget: {
             defaultValue: 1,
@@ -140,11 +141,11 @@
 
                     if (formData[paramId].includes(optionId) && formData[paramId]) {
 
-                        if (!option.default == true) {
+                        if (!option.default) {
                             price += option.price;
                         }
                     } else {
-                        if (option.default == true) {
+                        if (option.default) {
                             price -= option.price;
                         }
                     }
@@ -197,7 +198,6 @@
 
         init: function() {
             const thisApp = this;
-            console.log('settings:', settings);
             thisApp.initData();
             thisApp.initMenu();
         },

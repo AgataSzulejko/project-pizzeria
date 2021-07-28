@@ -209,6 +209,7 @@
 
            thisWidget.getElements(element);
            thisWidget.setValue(thisWidget.input.value);
+           thisWidget.initActions();
         }
 
         getElements(element){
@@ -224,16 +225,40 @@
           const thisWidget = this;
           const newValue = parseInt(value);
 
+          thisWidget.input.value = thisWidget.value;
+
           /* TODO: Add validation */
-          if (thisWidget.value !== newValue && !isNaN(newValue)) {
+          //if (thisWidget.value !== newValue && !isNaN(newValue)) {
+          if (!isNaN(newValue) && thisWidget.value !== newValue && newValue >= (settings.amountWidget.defaultMin-1) && newValue <= (settings.amountWidget.defaultMax+1)) {
             thisWidget.value = newValue;
           }
         }
 
         initActions () {
 
+            const thisWidget = this;
 
+            thisWidget.input.addEventListener('change', function () {
+            thisWidget.setValue(thisWidget.input.value);
+            });
 
+            thisWidget.linkDecrease.addEventListener('click', function (event) {
+            event.preventDefault();
+           thisWidget.setValue(thisWidget.value - 1);
+            });
+
+            thisWidget.linkIncrease.addEventListener('click', function (event) {
+            event.preventDefault();
+            thisWidget.setValue(thisWidget.value + 1);
+            });
+
+            }
+
+            announce () {
+              const thisWidget = this;
+
+              const event = new Event('updated');
+              thisWidget.element.dispatchEvent(event);
             }
 
       }

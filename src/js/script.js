@@ -270,7 +270,7 @@
                 params[paramId] = {
                   label: param.label,
                   options: {}
-                }
+                };
 
                 // for every option in this category
             for (let optionId in param.options) {
@@ -368,6 +368,7 @@
             thisCart.dom = {};
             thisCart.dom.wrapper = element;
             thisCart.dom.toggleTrigger = element.querySelector(select.cart.toggleTrigger);
+            thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
         }
 
         initActions() {
@@ -378,8 +379,12 @@
         }
 
         add(menuProduct) {
-     // const thisCart = this;
-        console.log('adding product', menuProduct);
+          const thisCart = this;
+          const generatedHTML = templates.cartProduct(menuProduct);
+          const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+         /* add element to menu */
+         thisCart.dom.productList.appendChild(generatedDOM);
+         console.log('adding product', menuProduct);
         }
 
 

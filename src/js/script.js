@@ -359,7 +359,6 @@
             const thisCart = this;
             thisCart.products = [];
             thisCart.getElements(element);
-            console.log('new Cart', thisCart);
             thisCart.initActions();
         }
 
@@ -384,9 +383,7 @@
           const generatedDOM = utils.createDOMFromHTML(generatedHTML);
          /* add element to menu */
          thisCart.dom.productList.appendChild(generatedDOM);
-         console.log('adding product', menuProduct);
         }
-
 
     }
 

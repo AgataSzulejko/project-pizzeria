@@ -74,9 +74,9 @@
         },
 
         db: {
-          url: '//localhost:3131',
-          products: 'products',
-          orders: 'orders',
+            url: '//localhost:3131',
+            products: 'products',
+            orders: 'orders',
         },
     };
 
@@ -397,40 +397,40 @@
                 thisCart.remove(event.detail.cartProduct);
             });
 
-            thisCart.dom.form.addEventListener('submit', function (event) {
-            event.preventDefault();
-            thisCart.sendOrder();
+            thisCart.dom.form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                thisCart.sendOrder();
             });
         }
 
         sendOrder() {
 
-          const thisCart = this;
-          const url = settings.db.url + '/' + settings.db.orders;
+            const thisCart = this;
+            const url = settings.db.url + '/' + settings.db.orders;
 
-          const payload = {
-              address: thisCart.dom.address.value,
-              phone: thisCart.dom.phone.value,
-              totalPrice: thisCart.totalPrice,
-              subTotalPrice: thisCart.subTotalPrice,
-              totalNumber: thisCart.totalNumber,
-              deliveryFee: settings.cart.defaultDeliveryFee,
-              products: [],
-        };
-        for (let prod of thisCart.products) {
-          payload.products.push(prod.getData());
-        }
+            const payload = {
+                address: thisCart.dom.address.value,
+                phone: thisCart.dom.phone.value,
+                totalPrice: thisCart.totalPrice,
+                subTotalPrice: thisCart.subTotalPrice,
+                totalNumber: thisCart.totalNumber,
+                deliveryFee: settings.cart.defaultDeliveryFee,
+                products: [],
+            };
+            for (let prod of thisCart.products) {
+                payload.products.push(prod.getData());
+            }
 
-        const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-        };
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            };
 
-        fetch(url, options);
-        console.log('payload', payload);
+            fetch(url, options);
+
 
         }
 
@@ -554,18 +554,17 @@
 
 
         getData() {
-        const thisCartProduct = this;
-        const payloadSummary = {
-        id: thisCartProduct.id,
-        name: thisCartProduct.name,
-        amount: thisCartProduct.amount,
-        priceSingle: thisCartProduct.priceSingle,
-        price: thisCartProduct.price,
-        params: thisCartProduct.params,
-      };
-      console.log('payloadSummary', payloadSummary);
-      return payloadSummary;
-  }
+            const thisCartProduct = this;
+            const payloadSummary = {
+                id: thisCartProduct.id,
+                name: thisCartProduct.name,
+                amount: thisCartProduct.amount,
+                priceSingle: thisCartProduct.priceSingle,
+                price: thisCartProduct.price,
+                params: thisCartProduct.params,
+            };
+            return payloadSummary;
+        }
 
 
     }
@@ -584,18 +583,17 @@
             thisApp.data = {};
             const url = settings.db.url + '/' + settings.db.products;
             fetch(url)
-            .then(function (rawResponse) {
-              return rawResponse.json();
-            })
-            .then(function (parsedResponse) {
-            console.log('parsedResponse', parsedResponse);
+                .then(function(rawResponse) {
+                    return rawResponse.json();
+                })
+                .then(function(parsedResponse) {
 
-            /* save parsedRersponse as thisApp.data.products */
-            thisApp.data.products = parsedResponse;
-            /* execute initMenu method */
-            thisApp.initMenu();
-            });
-            console.log('thisApp.data', JSON.stringify(thisApp.data));
+                    /* save parsedRersponse as thisApp.data.products */
+                    thisApp.data.products = parsedResponse;
+                    /* execute initMenu method */
+                    thisApp.initMenu();
+                });
+
         },
 
         init: function() {

@@ -6,11 +6,16 @@ import AmountWidget from './components/AmountWidget.js';*/
 
 const app = {
 
+
+  initPages: function () {
+    const thisApp = this;
+    thisApp.pages = document.querySelector(select.containerOf.pages).children;  
+
+  },
+
   initMenu: function () {
 
     const thisApp = this;
-
-    console.log('thisApp.data: ', thisApp.data);
 
     for (let productData in thisApp.data.products) {
       new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
@@ -27,26 +32,17 @@ const app = {
         return rawResponse.json();
       })
       .then(function (parsedResponse) {
-        console.log('parsedResponse', parsedResponse);
-
         /* save parsedRersponse as thisApp.data.products */
         thisApp.data.products = parsedResponse;
         /* execute initMenu method */
         thisApp.initMenu();
 
       });
-    console.log('thisApp.data', JSON.stringify(thisApp.data));
-
   },
 
   init: function () {
 
     const thisApp = this;
-    console.log('*** App starting ***');
-    console.log('thisApp:', thisApp);
-    console.log('classNames:', classNames);
-    console.log('settings:', settings);
-    console.log('templates:', templates);
 
     thisApp.initData();
     /*thisApp.initCart();*/

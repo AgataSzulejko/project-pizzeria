@@ -30,24 +30,24 @@ export const select = {
             linkIncrease: 'a[href="#more"]',
         },
         datePicker: {
-  wrapper: '.date-picker',
-  input: `input[name="date"]`,
-},
-hourPicker: {
-  wrapper: '.hour-picker',
-  input: 'input[type="range"]',
-  output: '.output',
-},
-},
-booking: {
-peopleAmount: '.people-amount',
-hoursAmount: '.hours-amount',
-tables: '.floor-plan .table',
-form: '.booking-form',
-starters: '[name="starter"]',
-},
-nav: {
-links: '.main-nav a',
+            wrapper: '.date-picker',
+            input: `input[name="date"]`,
+        },
+        hourPicker: {
+            wrapper: '.hour-picker',
+            input: 'input[type="range"]',
+            output: '.output',
+        },
+    },
+    booking: {
+        peopleAmount: '.people-amount',
+        hoursAmount: '.hours-amount',
+        tables: '.floor-plan .table',
+        form: '.booking-form',
+        starters: '[name="starter"]',
+    },
+    nav: {
+        links: '.main-nav a',
     },
 
     cart: {
@@ -80,14 +80,14 @@ export const classNames = {
     },
 
     booking: {
-    loading: 'loading',
-    tableBooked: 'booked',
+        loading: 'loading',
+        tableBooked: 'booked',
     },
     nav: {
-      active: 'active',
+        active: 'active',
     },
     pages: {
-      active: 'active',
+        active: 'active',
     }
 };
 
@@ -103,15 +103,15 @@ export const settings = {
     },
 
     hours: {
-    open: 12,
-    close: 24,
-  },
-  datePicker: {
-    maxDaysInFuture: 14,
-  },
-  booking: {
-    tableIdAttribute: 'data-table',
-  },
+        open: 12,
+        close: 24,
+    },
+    datePicker: {
+        maxDaysInFuture: 14,
+    },
+    booking: {
+        tableIdAttribute: 'data-table',
+    },
 
     db: {
         url: '//localhost:3131',

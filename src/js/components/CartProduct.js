@@ -11,7 +11,6 @@ class CartProduct {
         thisCartProduct.params = menuProduct.params;
         thisCartProduct.amount = menuProduct.amount;
         thisCartProduct.priceSingle = menuProduct.priceSingle;
-        /*thisCartProduct.amountWidget = menuProduct.amountWidget;*/
 
         thisCartProduct.getElements(element);
         thisCartProduct.initAmountWidget();

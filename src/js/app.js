@@ -1,15 +1,56 @@
 import {settings, select, templates, classNames} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
-/*import CartProduct from './components/CartProduct.js';
-import AmountWidget from './components/AmountWidget.js';*/
 
 const app = {
 
-
   initPages: function () {
     const thisApp = this;
-    thisApp.pages = document.querySelector(select.containerOf.pages).children;  
+    thisApp.pages = document.querySelector(select.containerOf.pages).children;
+
+    thisApp.navLinks = document.querySelectorAll(select.nav.links);
+
+    const hashId = window.location.hash.replace('#/', '');
+
+    let pageId = thisApp.pages[0].id;
+
+    for (let page of thisApp.pages) {
+      if(page.id == hashId) {
+        pageId = page.id;
+        break;
+      }
+    }
+    thisApp.activatePage(pageId);
+
+    for(let link of thisApp.navLinks) {
+
+      link.addEventListener('click', function(event) {
+        const clickedElement = this;
+        event.preventDefault();
+
+        const id = clickedElement.getAttribute('href').replace('#', '');
+
+        thisApp.activatePage(id);
+
+        window.location.hash = '#/' + id;
+      });
+    }
+},
+
+  activatePage: function (pageId) {
+  const thisApp = this;
+
+
+  for(let page of thisApp.pages) {
+    page.classList.toggle(classNames.pages.active, page.id == pageId);
+  }
+
+  for(let link of thisApp.navLinks) {
+      link.classList.toggle(
+        classNames.nav.active,
+        link.getAttribute('href') == '#' + pageId
+      );
+    }
 
   },
 
@@ -32,9 +73,9 @@ const app = {
         return rawResponse.json();
       })
       .then(function (parsedResponse) {
-        /* save parsedRersponse as thisApp.data.products */
+
         thisApp.data.products = parsedResponse;
-        /* execute initMenu method */
+
         thisApp.initMenu();
 
       });
@@ -44,8 +85,9 @@ const app = {
 
     const thisApp = this;
 
+    thisApp.initPages();
     thisApp.initData();
-    /*thisApp.initCart();*/
+    // thisApp.initCart();
   },
 
   initCart: function () {
